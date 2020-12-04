@@ -1,15 +1,20 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from '../../lib/classNames';
-import getClassname from '../../helpers/getClassName';
+import { getClassName } from '../../helpers/getClassName';
 import usePlatform from '../../hooks/usePlatform';
 
-export type CardGridProps = HTMLAttributes<HTMLDivElement>;
+export interface CardGridProps extends HTMLAttributes<HTMLDivElement> {
+  size: 's' | 'm' | 'l';
+}
 
-const CardGrid: FunctionComponent<CardGridProps> = ({ children, className, style, ...restProps }: CardGridProps) => {
+const CardGrid: FunctionComponent<CardGridProps> = ({ children, className, size, ...restProps }: CardGridProps) => {
   const platform = usePlatform();
 
   return (
-    <div {...restProps} style={style} className={classNames(className, getClassname('CardGrid', platform))}>
+    <div
+      {...restProps}
+      className={classNames(getClassName('CardGrid', platform), `CardGrid--${size}`, className)}
+    >
       {children}
     </div>
   );

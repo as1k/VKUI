@@ -5,26 +5,26 @@
   <Panel id="card">
     <PanelHeader>CardGrid</PanelHeader>
     <Group separator="hide">
-      <CardGrid>
-        <Card size="l">
+      <CardGrid size="s">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="m">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="m">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="s">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="s">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="s">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
-        <Card size="l">
+        <Card>
           <div style={{ height: 96 }} />
         </Card>
       </CardGrid>

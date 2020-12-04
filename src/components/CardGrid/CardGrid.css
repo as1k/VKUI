@@ -16,15 +16,15 @@
   margin-right: 4px;
 }
 
-.CardGrid .Card--sz-l {
+.CardGrid--l .Card {
   width: calc(100% - 8px);
 }
 
-.CardGrid .Card--sz-m {
+.CardGrid--m .Card {
   width: calc((100% - 2 * 8px) / 2);
 }
 
-.CardGrid .Card--sz-s {
+.CardGrid--s .Card {
   width: calc((100% - 3 * 8px) / 3);
 }
 
