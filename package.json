@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
+    "@size-limit/preset-big-lib": "^4.9.1",
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.5",
@@ -60,6 +61,7 @@
     "react-frame-component": "^3.0.0",
     "react-styleguidist": "^11.0.8",
     "shx": "^0.3.2",
+    "size-limit": "^4.9.1",
     "source-map-loader": "^0.2.4",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
@@ -82,8 +84,21 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
+  "size-limit": [{
+    "name": "All JS",
+    "path": "dist/index.js"
+  }, {
+    "name": "Minimal import with tree-shaking",
+    "path": "dist/index.js",
+    "import": "{ View, Panel, ConfigProvider, AdaptivityProvider }"
+  }, {
+    "name": "All CSS",
+    "path": "dist/vkui.css",
+    "webpack": false
+  }],
   "scripts": {
     "prepare": "yarn build",
+    "size": "yarn clear && yarn build && size-limit",
     "styleguide": "cross-env NODE_ENV=development styleguidist server --config=styleguide/config.js",
     "styleguide:build": "cross-env NODE_ENV=production styleguidist build --config=styleguide/config.js",
     "dev": "yarn clear && yarn copy-default-scheme && concurrently \"yarn:tsc-dev\" \"yarn:babel-dev\" \"yarn:postcss-dev\" \"yarn:postcss-unstable-dev\"",
