@@ -69,26 +69,31 @@ class Example extends React.Component {
         <View id="feed" activePanel="feed">
           <Panel id="feed">
             <PanelHeader>Новости</PanelHeader>
+            <div style={{ height: '1000px' }} />
           </Panel>
         </View>
         <View id="services" activePanel="services">
           <Panel id="services">
             <PanelHeader>Сервисы</PanelHeader>
+            <div style={{ height: '1000px' }} />
           </Panel>
         </View>
         <View id="messages" activePanel="messages">
           <Panel id="messages">
             <PanelHeader>Сообщения</PanelHeader>
+            <div style={{ height: '1000px' }} />
           </Panel>
         </View>
         <View id="clips" activePanel="clips">
           <Panel id="clips">
             <PanelHeader>Клипы</PanelHeader>
+            <div style={{ height: '1000px' }} />
           </Panel>
         </View>
         <View id="profile" activePanel="profile">
           <Panel id="profile">
             <PanelHeader>Профиль</PanelHeader>
+            <div style={{ height: '1000px' }} />
           </Panel>
         </View>
       </Epic>
