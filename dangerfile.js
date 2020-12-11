@@ -37,6 +37,7 @@ function coverage() {
   })
 }
 
+const updateScreensActionLink = `https://github.com/VKCOM/VKUI/actions?query=workflow%3A"Update+screenshots"`;
 const UPLOAD_BUCKET = 'vkui-screenshots';
 const awsHost = `${UPLOAD_BUCKET}.hb.bizmrg.com`;
 const s3 = new AWS.S3({
@@ -50,7 +51,8 @@ async function uploadFailedScreenshots() {
   const { github } = danger;
   const pathPrefix = github ? String(github.pr.number) : 'local';
   await removeDiffs(`${pathPrefix}/`);
-  for (const failedScreen of await pglob(path.join(__dirname, '**', diffDir, '*.png'))) {
+  const failedScreens = await pglob(path.join(__dirname, '**', diffDir, '*.png'));
+  for (const failedScreen of failedScreens) {
     const screenName = path.parse(failedScreen).name;
     const fileContents = await readFile(failedScreen);
     const key = `${pathPrefix}/${screenName}-${md5(fileContents)}.png`;
@@ -71,6 +73,16 @@ async function uploadFailedScreenshots() {
     } catch (err) {
       console.log('Screenshot diff upload failed', err.message);
     }
+  }
+
+  if (failedScreens.length) {
+    warn(`${failedScreens.length} changed screenshots found — review & update them via ["Update Screenshots" action](${updateScreensActionLink}) before merging.`);
+  }
+}
+
+async function checkUpdatedScreenshots() {
+  if (danger.git.modified_files.some(file => /__image_snapshots__/.test(file))) {
+    warn('Modified screenshots found');
   }
 }
 
@@ -94,4 +106,5 @@ Promise.all([
   lint(),
   coverage(),
   uploadFailedScreenshots(),
+  checkUpdatedScreenshots(),
 ]);
