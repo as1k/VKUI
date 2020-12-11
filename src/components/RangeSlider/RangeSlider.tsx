@@ -173,11 +173,14 @@ class RangeSlider extends Component<RangeSliderProps, RangeSliderState> {
       onChange, getRootRef, platform, sizeY, ...restProps } = this.props;
 
     return (
-      <div
+      <Touch
         {...restProps}
+        onStart={this.onStart}
+        onMoveX={this.onMoveX}
+        onEnd={this.onEnd}
         className={classNames(getClassName('Slider', platform), className, `Slider--sizeY-${sizeY}`)}
       >
-        <Touch getRootRef={this.getRef} onStart={this.onStart} onMoveX={this.onMoveX} onEnd={this.onEnd} className="Slider__in">
+        <div ref={this.getRef} className="Slider__in">
           <div
             className="Slider__dragger"
             style={{
@@ -188,8 +191,8 @@ class RangeSlider extends Component<RangeSliderProps, RangeSliderState> {
             <span className={classNames('Slider__thumb', 'Slider__thumb--start')} />
             <span className={classNames('Slider__thumb', 'Slider__thumb--end')} />
           </div>
-        </Touch>
-      </div>
+        </div>
+      </Touch>
     );
   }
 }
