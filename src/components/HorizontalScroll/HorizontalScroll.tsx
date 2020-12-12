@@ -166,9 +166,15 @@ const HorizontalScroll: FC<HorizontalScrollProps> = (props) => {
 
   useEffect(() => {
     scrollerRef.current && scrollerRef.current.addEventListener('scroll', onscroll);
-    scrollerRef.current && setInitialScrollWidth(scrollerRef.current.scrollWidth);
     return () => scrollerRef.current && scrollerRef.current.removeEventListener('scroll', onscroll);
   }, []);
+
+  useEffect(() => {
+    if (scrollerRef.current) {
+      setInitialScrollWidth(scrollerRef.current.scrollWidth);
+      onscroll();
+    }
+  }, [children]);
 
   useEffect(onscroll, [scrollerRef]);
 
